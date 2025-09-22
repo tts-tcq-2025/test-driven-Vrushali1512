@@ -10,5 +10,5 @@ int add(const char* numbers) {
     }
 
     // Placeholder: Future logic will go here
-    return 0; // Default value to pass the first test
+    return 0;  // Default value to pass the first test
 }
