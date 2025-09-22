@@ -1,4 +1,3 @@
-#include <cstdio>
 int main() {
     // Test 1: Empty string
     const char* test1 = "";
