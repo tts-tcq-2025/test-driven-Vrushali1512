@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int add(const char *numbers) {
     if (strlen(numbers) == 0) {
         return 0;  // If the string is empty, return 0
     }
-    return 0;  // Default case (we'll extend this logic later)
+    return atoi(numbers);  // Convert the string to an integer and return it
 }
 
 void test_single_number() {
@@ -15,6 +16,6 @@ void test_single_number() {
 int main() {
     test_empty_string();
     test_single_number();
-    printf("Test for single number passed!\n");
+    printf("All tests passed!\n");
     return 0;
 }
