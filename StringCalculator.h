@@ -1,9 +1,6 @@
-#ifndef STRING_CALCULATOR_H
-#define STRING_CALCULATOR_H
+#ifndef STRINGCALCULATOR_H
+#define STRINGCALCULATOR_H
 
-#include <stdio.h>
+int Add(const char *numbers);
 
-// Function prototypes
-int Add(const char *input);
-
-#endif // STRING_CALCULATOR_H
+#endif // STRINGCALCULATOR_H
