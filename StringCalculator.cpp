@@ -8,14 +8,12 @@ int Add(const char *numbers) {
     }
         
     int sum = 0;
-    const char *delimiter = ",";  // default delimiter
+    char *copy = strdup(numbers);
+    char *token = strtok(copy, ",");
 
-    char *copy = strdup(numbers);  // duplicate string for safe tokenizing
-    char *token = strtok(copy, delimiter);
-    
-    while (token != NULL) {
+    while (token) {
         sum += atoi(token);
-        token = strtok(NULL, delimiter);
+        token = strtok(NULL, ",");
     }
 
     free(copy);
