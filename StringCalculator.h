@@ -1,6 +1,6 @@
-#ifndef STRINGCALCULATOR_H
-#define STRINGCALCULATOR_H
+#ifndef STRINGCALCULATOR_H_
+#define STRINGCALCULATOR_H_
 
 int Add(const char *numbers);
 
-#endif // STRINGCALCULATOR_H
+#endif  // STRINGCALCULATOR_H
