@@ -3,4 +3,4 @@
 
 int Add(const char *numbers);
 
-#endif
+#endif  // STRINGCALCULATOR_H_
