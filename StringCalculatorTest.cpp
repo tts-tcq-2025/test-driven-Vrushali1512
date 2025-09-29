@@ -12,9 +12,15 @@ void test_single_number_returns_value() {
     printf("test_single_number_returns_value passed.\n");
 }
 
+void test_two_numbers_comma_separated() {
+    assert(Add("1,2") == 3);
+    printf("test_two_numbers_comma_separated passed.\n");
+}
+
 int main() {
     test_empty_string_returns_0();
     test_single_number_returns_value();
+    test_two_numbers_comma_separated();
     printf("All tests passed.\n");
     return 0;
 }
