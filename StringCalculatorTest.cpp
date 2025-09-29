@@ -17,10 +17,16 @@ void test_two_numbers_comma_separated() {
     printf("test_two_numbers_comma_separated passed.\n");
 }
 
+void test_multiple_numbers_comma_separated() {
+    assert(Add("1,2,3,4") == 10);
+    printf("test_multiple_numbers_comma_separated passed.\n");
+}
+
 int main() {
     test_empty_string_returns_0();
     test_single_number_returns_value();
     test_two_numbers_comma_separated();
+    test_multiple_numbers_comma_separated();
     printf("All tests passed.\n");
     return 0;
 }
