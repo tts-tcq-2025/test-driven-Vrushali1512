@@ -1,5 +1,4 @@
 #include "StringCalculator.h"
-#include <string.h>
 #include <stdlib.h>
 
 int Add(const char *numbers) {
@@ -8,14 +7,33 @@ int Add(const char *numbers) {
     }
 
     int sum = 0;
-    char *copy = strdup(numbers);
-    char *token = strtok_r(copy, ",\n");
+    const char *start = numbers;
+    const char *p = numbers;
 
-    while (token) {
-        sum += atoi(token);
-        token = strtok_r(NULL, ",\n");
+    while (*p != '\0') {
+        if (*p == ',' || *p == '\n') {
+            // Calculate length of token
+            int len = p - start;
+            if (len > 0) {
+                // Copy substring to temp buffer
+                char *token = (char *)malloc(len + 1);
+                for (int i = 0; i < len; i++) {
+                    token[i] = start[i];
+                }
+                token[len] = '\0';
+
+                sum += atoi(token);
+                free(token);
+            }
+            start = p + 1;
+        }
+        p++;
     }
 
-    free(copy);
+    // Last token after loop ends
+    if (*start != '\0') {
+        sum += atoi(start);
+    }
+
     return sum;
 }
