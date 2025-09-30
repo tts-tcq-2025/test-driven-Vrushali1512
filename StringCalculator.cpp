@@ -9,11 +9,11 @@ int Add(const char *numbers) {
     
     int sum = 0;
     char *copy = strdup(numbers);
-    char *token = strtok_r(copy, ",");
+    char *token = strtok(copy, ",");
 
     while (token) {
         sum += atoi(token);
-        token = strtok_r(NULL, ",");
+        token = strtok(NULL, ",");
     }
 
     free(copy);
