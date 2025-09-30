@@ -27,12 +27,18 @@ void test_newline_and_comma_delimiters() {
     printf("test_newline_and_comma_delimiters passed.\n");
 }
 
+void test_custom_delimiter_semicolon() {
+    assert(Add("//;\n1;2") == 3);
+    printf("test_custom_delimiter_semicolon passed.\n");
+}
+
 int main() {
     test_empty_string_returns_0();
     test_single_number_returns_value();
     test_two_numbers_comma_separated();
     test_multiple_numbers_comma_separated();
     test_newline_and_comma_delimiters();
+    test_custom_delimiter_semicolon();
     printf("All tests passed.\n");
     return 0;
 }
