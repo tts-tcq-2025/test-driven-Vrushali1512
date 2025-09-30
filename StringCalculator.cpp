@@ -13,7 +13,7 @@ int Add(const char *numbers) {
 
     while (token) {
         sum += atoi(token);
-        token = strtok(NULL, ",");
+        token = strtok(NULL, ",\n");
     }
 
     free(copy);
