@@ -7,13 +7,13 @@ int Add(const char *numbers) {
         return 0;
     }
 
-    const char *delimiters = ",\n"; // Default delimiters
+    const char *delimiters = ",\n";  // Default delimiters
     const char *number_section = numbers;
 
     // Check for custom delimiter syntax "//<delimiter>\n"
     if (strncmp(numbers, "//", 2) == 0) {
         char custom_delim = numbers[2];
-        static char custom_delims[2] = {0}; // one char + null terminator
+        static char custom_delims[2] = {0};  // one char + null terminator
         custom_delims[0] = custom_delim;
         custom_delims[1] = '\0';
         delimiters = custom_delims;
