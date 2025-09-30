@@ -6,7 +6,7 @@ int Add(const char *numbers) {
     if (numbers == NULL || strlen(numbers) == 0) {
         return 0;
     }
-    
+
     int sum = 0;
     char *copy = strdup(numbers);
     char *token = strtok(copy, ",");
