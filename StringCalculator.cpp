@@ -10,7 +10,6 @@ int Add(const char *numbers) {
     const char *delimiters = ",\n";  // Default delimiters
     const char *number_section = numbers;
 
-    // Check for custom delimiter format "//<delimiter>\n"
     if (strncmp(numbers, "//", 2) == 0) {
         char custom_delim = numbers[2];
         static char custom_delims[2] = {0};
@@ -19,21 +18,26 @@ int Add(const char *numbers) {
         delimiters = custom_delims;
 
         number_section = strchr(numbers, '\n');
-        if (number_section != NULL) {
-            number_section++;  // Move past '\n'
-        } else {
-            return 0;  // Invalid format
+        if (number_section == NULL) {
+            return 0;
         }
+        number_section++;
     }
 
     int sum = 0;
     char *copy = strdup(number_section);
-    char *saveptr = NULL;
-    char *token = strtok_r(copy, delimiters, &saveptr);
+    if (copy == NULL) {
+        return 0;
+    }
 
-    while (token != NULL) {
+    char *saveptr = NULL;
+    char *temp_token = strtok_r(copy, delimiters, &saveptr);
+    const char *token = NULL;
+
+    while (temp_token != NULL) {
+        token = temp_token;  // assign to const pointer (read-only)
         sum += atoi(token);
-        token = strtok_r(NULL, delimiters, &saveptr);
+        temp_token = strtok_r(NULL, delimiters, &saveptr);
     }
 
     free(copy);
