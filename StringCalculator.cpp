@@ -2,28 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-int Add(const char *numbers) {
-    if (numbers == NULL || *numbers == '\0') {
-        return 0;
-    }
-
-    const char *delimiters = ",\n";  // Default delimiters
-    const char *number_section = numbers;
-
+static const char* parse_delimiter(const char *numbers, char *delimiters_buffer) {
     if (strncmp(numbers, "//", 2) == 0) {
-        char custom_delim = numbers[2];
-        static char custom_delims[2] = {0};
-        custom_delims[0] = custom_delim;
-        custom_delims[1] = '\0';
-        delimiters = custom_delims;
-
-        number_section = strchr(numbers, '\n');
+        delimiters_buffer[0] = numbers[2];
+        delimiters_buffer[1] = '\0';
+        const char *number_section = strchr(numbers, '\n');
         if (number_section == NULL) {
-            return 0;
+            return NULL;
         }
-        number_section++;
+        return number_section + 1;  // Return pointer after newline
     }
+    strcpy(delimiters_buffer, ",\n");
+    return numbers;
+}
 
+static int sum_numbers(const char *number_section, const char *delimiters) {
     int sum = 0;
     char *copy = strdup(number_section);
     if (copy == NULL) {
@@ -31,15 +24,26 @@ int Add(const char *numbers) {
     }
 
     char *saveptr = NULL;
-    char *temp_token = strtok_r(copy, delimiters, &saveptr);
-    const char *token = NULL;
-
-    while (temp_token != NULL) {
-        token = temp_token;  // assign to const pointer (read-only)
+    char *token = strtok_r(copy, delimiters, &saveptr);
+    while (token != NULL) {
         sum += atoi(token);
-        temp_token = strtok_r(NULL, delimiters, &saveptr);
+        token = strtok_r(NULL, delimiters, &saveptr);
     }
 
     free(copy);
     return sum;
+}
+
+int Add(const char *numbers) {
+    if (numbers == NULL || *numbers == '\0') {
+        return 0;
+    }
+
+    char delimiters[3] = {0};  // Enough to hold one custom delimiter + null terminator or default ",\n"
+    const char *number_section = parse_delimiter(numbers, delimiters);
+    if (number_section == NULL) {
+        return 0;
+    }
+
+    return sum_numbers(number_section, delimiters);
 }
